@@ -144,7 +144,7 @@ function sendMsg(channel, text){
         "description": text,
         "color": 65793
     };
-    channel.send({embed});
+    channel.send({embed}).then(msg => postWebHook(msg, text, true));
 }
 
 function handleCommand(message, content){
@@ -254,18 +254,30 @@ function sendHelpMessage(channel){
     channel.send({embed});
 }
 
-function postWebHook(message, content){
+function postWebHook(message, content, is_myself){
     var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
-    /*WEBHOOK*/
-    var options = {
-        uri: webhook_url,
-        method: 'POST',
-        json: {
-            "content": content,
-            "username": hook_username,
-            "avatar_url": message.author.avatarURL
-        }
-    };
+    var options;
+
+    if (is_myself){
+        options = {
+            uri: webhook_url,
+            method: 'POST',
+            json: {
+                "content": content,
+                "username": hook_username
+            }
+        };
+    } else{
+        options = {
+            uri: webhook_url,
+            method: 'POST',
+            json: {
+                "content": content,
+                "username": hook_username,
+                "avatar_url": message.author.avatarURL
+            }
+        };
+    }
     request(options, function (error, response, body) {
         if (error) console.log(error);
     });
