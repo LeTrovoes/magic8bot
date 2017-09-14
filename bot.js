@@ -110,6 +110,9 @@ client.on('message', message => {
 });
 
 function handleMessage(message){
+
+    if(message.author.bot) return;
+
     var content;
     if (message.content.startsWith("<@357678717301948416>")) content = message.content.replace("<@357678717301948416>", "").trim();
     else if (message.content.startsWith("8ball")) content = message.content.replace("8ball", "").trim();
@@ -254,18 +257,19 @@ function sendHelpMessage(channel){
     channel.send({embed});
 }
 
-function postWebHook(message, content, is_myself){    
+function postWebHook(message, content, is_myself){
+    var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
     var options;
     if (is_myself){
         options = {
             uri: webhook_url,
             method: 'POST',
             json: {
-                "content": content
+                "content": content,
+                "username": hook_username
             }
         };
     } else{
-        var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
         options = {
             uri: webhook_url,
             method: 'POST',
