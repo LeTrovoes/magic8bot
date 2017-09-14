@@ -184,7 +184,7 @@ function isInWhitelist (userId){
 function sendAboutMessage(channel){
     const embed = {
         "title": "**Info**",
-        "description": "It's an Magic 8-Ball. What do you expect this description to say!?!?",
+        "description": "It's a Magic 8-Ball. What do you expect this description to say!?!?",
         "color": 65793,
         "timestamp": new Date(),
         "footer": {
@@ -198,7 +198,7 @@ function sendAboutMessage(channel){
         "fields": [
         {
             "name": "Authors",
-            "value": "Created by: `SintiePie#3744` and `Thunder#5599`\nUsing: <:nodejs:336328404276346880> [Node.JS](https://nodejs.org) and <:djs:348960148682964992> [Discord.JS](https://discord.js.org/#/)"
+            "value": "Created by: **SintiePie#3744** and **Thunder#5599**\nUsing: <:nodejs:336328404276346880> [Node.JS](https://nodejs.org) and <:djs:348960148682964992> [Discord.JS](https://discord.js.org/#/)"
         }
         ]
     };
