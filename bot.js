@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const config  = require("./config.js");
 const logger  = require("./logger.js");
+const request = require("request");
 
 const client = new Discord.Client();
 const token = config.token;
