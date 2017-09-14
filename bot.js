@@ -4,6 +4,7 @@ const logger  = require("./logger.js");
 
 const client = new Discord.Client();
 const token = config.token;
+const webhook_url = config.webhook_url;
 
 client.login(token);
 
@@ -113,28 +114,36 @@ function handleMessage(message){
     else if (message.content.startsWith("8ball")) content = message.content.replace("8ball", "").trim();
 
     logger.log(">> " + content);
+    postWebHook(message, ("8ball " + content));
 
     var isQuestion = content.indexOf("?") > 1 ? true : false;
 
     if (content.indexOf("--") > -1){
         handleCommand(message, content);
     }
+    else if (content == ""){
+        sendMsg(message.channel, "Ask me something, idiot.");
+    }
     else if (content.length < 9 && !isQuestion){
-        message.channel.send("Ask me something, idiot.");
+        sendMsg(message.channel, "That's not a question.");
     }
     else if (content.length < 9 && isQuestion){
-        message.channel.send("Ok, now ask me a real question.");
+        sendMsg(message.channel, "Ok, now ask me a real question.");
     }
     else if (content.length >= 9 && !isQuestion){
-        message.channel.send("I only answer to proper grammar.");
+        sendMsg(message.channel, "I only answer to proper grammar.");
     }
     else{
-        var embed = {
-            "description": responses[Math.floor(responses.length * Math.random())],
-            "color": 65793
-        };
-        message.channel.send({embed});
+        sendMsg(message.channel, responses[Math.floor(responses.length * Math.random())]);
     }
+}
+
+function sendMsg(channel, text){
+    var embed = {
+        "description": text,
+        "color": 65793
+    };
+    channel.send({embed});
 }
 
 function handleCommand(message, content){
@@ -242,4 +251,21 @@ function sendHelpMessage(channel){
         ]
     };
     channel.send({embed});
+}
+
+function postWebHook(message, content){
+    var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
+    /*WEBHOOK*/
+    var options = {
+        uri: webhook_url,
+        method: 'POST',
+        json: {
+            "content": content,
+            "username": hook_username,
+            "avatar_url": message.author.avatarURL
+        }
+    };
+    request(options, function (error, response, body) {
+        if (error) console.log(error);
+    });
 }
