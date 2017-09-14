@@ -111,14 +111,24 @@ function handleMessage(message){
     var content;
     if (message.content.startsWith("<@357678717301948416>")) content = message.content.replace("<@357678717301948416>", "").trim();
     else if (message.content.startsWith("8ball")) content = message.content.replace("8ball", "").trim();
-    if (content == ""){
-        message.channel.send("Ask me something you idiot!");
-    }
-    else if (content.indexOf("--") > -1){
+
+    logger.log(">> " + content);
+
+    var isQuestion = content.indexOf("?") > 1 ? true : false;
+
+    if (content.indexOf("--") > -1){
         handleCommand(message, content);
     }
+    else if (content.length < 9 && !isQuestion){
+        message.channel.send("Ask me something, idiot.");
+    }
+    else if (content.length < 9 && isQuestion){
+        message.channel.send("Ok, now ask me a real question.");
+    }
+    else if (content.length >= 9 && !isQuestion){
+        message.channel.send("I only answer to proper grammar.");
+    }
     else{
-        logger.log(">> " + content);
         var embed = {
             "description": responses[Math.floor(responses.length * Math.random())],
             "color": 65793
@@ -184,7 +194,7 @@ function isInWhitelist (userId){
 function sendAboutMessage(channel){
     const embed = {
         "title": "**Info**",
-        "description": "It's a Magic 8-Ball. What do you expect this description to say!?!?",
+        "description": "It's a Magic 8-Ball, and it's a Bot. Pretty self-explanatory.",
         "color": 65793,
         "timestamp": new Date(),
         "footer": {
