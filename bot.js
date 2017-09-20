@@ -95,6 +95,12 @@ const responses = [
     "I wouldn't worry about it."
 ];
 
+const minutes = 25, the_interval = minutes * 60 * 1000;
+setInterval(function() {
+    var guilds = client.guilds.size;
+    client.user.setPresence({ game: { name: "the truth to " + guilds + " servers", type: 1, url: "https://www.twitch.tv/monstercat"}});
+}, the_interval);
+
 client.on('ready', () => {
     console.log("Ready!");
     setTimeout(function () {
