@@ -7,93 +7,13 @@ const client = new Discord.Client();
 const token = config.token;
 const webhook_url = config.webhook_url;
 
-client.login(token);
+const responses = require("./replies/responses.js");
+const less_no   = require("./replies/less_no.js");
+const less_yes  = require("./replies/less_yes.js");
+const more_no   = require("./replies/more_no.js");
+const none      = require("./replies/none.js");
 
-const responses = [
-    "Without a doubt.",
-    "It is certain.",
-    "It is decidedly so.",
-    "Yes, definitely.",
-    "You may rely on it.",
-    "As I see it, yes.",
-    "Most likely.",
-    "Outlook good.",
-    "Signs point to yes.",
-    "Ask again later.",
-    "Reply hazy try again.",
-    "Try again later.",
-    "Better not tell you now.",
-    "Cannot predict now.",
-    "Concentrate and ask again.",
-    "Don't count on it.",
-    "My reply is no.",
-    "My sources say no.",
-    "Outlook not so good.",
-    "Very doubtful.",
-    "Yes.",
-    "No.",
-    "Yep.",
-    "Nope.",
-    "y35.",
-    "n0.",
-    "Only the prophecy will tell.",
-    "Who cares? We all die in the end.",
-    "Isn't it obvious?",
-    "Obviously, yes.",
-    "Yes, duh?",
-    "I don't think so, no.",
-    "Who gives a fuck?",
-    "You wish.",
-    "Is this a joke?",
-    "Ask me if I care.",
-    "Fuck do I know, I'm just a magic ball.",
-    "No God, please, no.",
-    "Just google it.",
-    "Bitch, I don't know your life.",
-    "Google might have the answer.",
-    "Help! I'm trapped!",
-    "Perhaps.",
-    "Maybe, just maybe.",
-    "You bet!",
-    "Grow up and make your own decisions, idiot.",
-    "Trust me, you don't want to know.",
-    "No Ron.",
-    "Ask Michael.",
-    "Hell if I know.",
-    "Barely possible.",
-    "It's a secret to everybody.",
-    "It depends.",
-    "Don't take my word for it.",
-    "Yeah, right.",
-    "Sure, if you think so.",
-    "In your dreams.",
-    "Sounds good to me.",
-    "Not yet.",
-    "Probably.",
-    "Very likely.",
-    "Very unlikely.",
-    "Not advisable.",
-    "Give it time.",
-    "When the planets align.",
-    "You already know the answer to that.",
-    "Maybe, in a few weeks, if you're lucky.",
-    "Never in a million years, maybe in fewer.",
-    "It smells like it.",
-    "Possibly, but possibly it is impossible.",
-    "They didn't allow me to tell you.",
-    "No fucking way.",
-    "Oh hell no!",
-    "Kill them, kill all of them.",
-    "Anything is possible.",
-    "In theory, yes.",
-    "I don't even know what to answer you.",
-    "I don't know and I don't care.",
-    "The answer is C.",
-    "Ask me again tomorrow.",
-    "I strongly believe so.",
-    "It looks like it.",
-    "I wouldn't worry about it."
-];
+client.login(token);
 
 const minutes = 25, the_interval = minutes * 60 * 1000;
 setInterval(function() {
@@ -132,16 +52,16 @@ function handleMessage(message){
         handleCommand(message, content);
     }
     else if (content == ""){
-        sendMsg(message.channel, "Ask me something, idiot.");
+        sendMsg(message.channel, none[Math.floor(none.length * Math.random())]);
     }
     else if (content.length < 9 && !isQuestion){
-        sendMsg(message.channel, "That's not a question.");
+        sendMsg(message.channel, less_no[Math.floor(less_no.length * Math.random())]);
     }
     else if (content.length < 9 && isQuestion){
-        sendMsg(message.channel, "Ok, now ask me a real question.");
+        sendMsg(message.channel, less_yes[Math.floor(less_yes.length * Math.random())]);
     }
     else if (content.length >= 9 && !isQuestion){
-        sendMsg(message.channel, "I only answer to proper grammar.");
+        sendMsg(message.channel, more_no[Math.floor(more_no.length * Math.random())]);
     }
     else{
         sendMsg(message.channel, responses[Math.floor(responses.length * Math.random())]);
@@ -159,7 +79,7 @@ function sendMsg(channel, text){
 function handleCommand(message, content){
     var argument = content.replace("--", "");
 
-    if (argument == "help" || argument == "-h") {
+    if (argument == "help") {
         sendHelpMessage(message.channel);
     }else
 
