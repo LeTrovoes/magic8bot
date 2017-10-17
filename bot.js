@@ -56,7 +56,7 @@ function handleMessage(message){
         sendMsg(message.channel, none[Math.floor(none.length * Math.random())]);
     }
     else if (content.indexOf("gay") > -1){
-        sendMsg(message,channel, gay[Math.floor(gay.length * Math.random())]);
+        sendMsg(message.channel, gay[Math.floor(gay.length * Math.random())]);
     }
     else if (content.length < 9 && !isQuestion){
         sendMsg(message.channel, less_no[Math.floor(less_no.length * Math.random())]);
