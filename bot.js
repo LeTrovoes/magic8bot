@@ -188,6 +188,7 @@ function sendHelpMessage(channel){
 }
 
 function postWebHook(message, content, is_myself){
+    if (content.indexOf("@everyone") > -1) content.replace("@everyone", "everyone");
     var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
     var options;
     if (is_myself){
