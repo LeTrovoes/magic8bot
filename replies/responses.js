@@ -98,9 +98,14 @@ module.exports = [
     "It ain't worth it, m8.",
     "Would it make life better?",
     "Why are we still here?",
-    "https://youtu.be/8qMtsir0l9k?t=42s",
     "No! Think of the children!",
     "please save me she's forcing me to lie",
     "Short answer: Yes. Long answer: No.",
-    "It all depends if you have a good kda ratio."
+    "It all depends if you have a good kda ratio.",
+    "I don't know, can a match box?",
+    "If Leo won the Oscar and we got Finding Nemo 2, It's probably possible.",
+    "What could possibly go wrong?",
+    "What's the worse that could happen?",
+    "Ah, I see you're an entity of culture as well.",
+    "You should ask that bitch Alexa."
 ];
