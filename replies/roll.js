@@ -1,0 +1,23 @@
+module.exports = [
+    '0',
+    '1',
+    'Too',
+    'That one title that will never be a trilogy',
+    '2+2',
+    '5',
+    '3²-3',
+    '7eleven',
+    'M8',
+    'NEIN NEIN NEIN',
+    'Top 10 Idiots who have USED this feature',
+    '11seven',
+    'High Noon',
+    '13 reasons why',
+    '7 but twice',
+    'Number 15: Burger King Foot Lettuce',
+    'Sexteen, wait no',
+    '17',
+    '128-10²',
+    '9+10',
+    'Critical 20'
+]
