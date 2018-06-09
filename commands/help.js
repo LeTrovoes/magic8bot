@@ -31,4 +31,3 @@ function help(message, args, client) {
     };
     message.channel.send({embed});
 }
-
