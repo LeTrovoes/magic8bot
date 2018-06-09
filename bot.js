@@ -21,14 +21,14 @@ const INTERVAL = 30 * 60 * 1000;
 
 setInterval(function() {
     var guilds = client.guilds.size;
-    client.user.setPresence({ game: { name: guilds + " servers questions", type: 3}});
+    client.user.setPresence({ game: { name: guilds + " servers questions | 8ball help", type: 3}});
 }, INTERVAL);
 
 client.on('ready', () => {
     console.log("Ready!");
     setTimeout(function () {
         client.user.setStatus('online');
-        client.user.setPresence({ game: { name: "your questions", type: 3}});
+        client.user.setPresence({ game: { name: "your questions | 8ball help", type: 3}});
     }, 10000);
 });
 
