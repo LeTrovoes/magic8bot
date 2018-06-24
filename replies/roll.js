@@ -17,7 +17,7 @@ module.exports = [
     'Number 15: Burger King Foot Lettuce',
     'Sexteen, wait no',
     '17',
-    '128-10²',
+    '118-10²',
     '9+10',
     'Critical 20'
 ]

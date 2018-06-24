@@ -14,21 +14,22 @@ const less_yes  = require("./replies/less_yes.js");
 const more_no   = require("./replies/more_no.js");
 const none      = require("./replies/none.js");
 const gay       = require("./replies/gay.js");
+const why       = require("./replies/why.js");
 
 client.login(token);
 
 const INTERVAL = 30 * 60 * 1000;
 
 setInterval(function() {
-    var guilds = client.guilds.size;
-    client.user.setPresence({ game: { name: guilds + " servers questions | 8ball help", type: 3}});
+    let guilds = client.guilds.size;
+    client.user.setPresence({ game: { name: "answers to " + guilds + " servers | 8ball help", type: 1, url: "https://www.twitch.tv/monstercat"}});
 }, INTERVAL);
 
 client.on('ready', () => {
     console.log("Ready!");
     setTimeout(function () {
         client.user.setStatus('online');
-        client.user.setPresence({ game: { name: "your questions | 8ball help", type: 3}});
+        client.user.setPresence({ game: { name: "answers | 8ball help", type: 1, url: "https://www.twitch.tv/monstercat"}});
     }, 10000);
 });
 
@@ -71,6 +72,9 @@ function handleMessage(message){
 
         if (content == ""){
             sendMsg(message.channel, none[Math.floor(none.length * Math.random())]);
+        }
+        else if (content.indexOf("why") > -1){
+            sendMsg(message.channel, why[Math.floor(why.length * Math.random())]);
         }
         else if (content.length >= 9 && isQuestion && content.indexOf("gay") > -1){
             sendMsg(message.channel, gay[Math.floor(gay.length * Math.random())]);
