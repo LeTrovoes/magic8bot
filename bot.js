@@ -73,7 +73,7 @@ function handleMessage(message){
         if (content == ""){
             sendMsg(message.channel, none[Math.floor(none.length * Math.random())]);
         }
-        else if (content.indexOf("why") > -1){
+        else if (content.toLowerCase().indexOf("why") > -1){
             sendMsg(message.channel, why[Math.floor(why.length * Math.random())]);
         }
         else if (content.length >= 9 && isQuestion && content.indexOf("gay") > -1){
