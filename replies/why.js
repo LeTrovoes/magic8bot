@@ -38,5 +38,7 @@ module.exports = [
     `Because if it all goes wrong you can have the excuse that an 8-ball told you so.`,
     `Because a bird told you so.`,
     `Because freedom.`,
-    `Because I don't give a fuck.`
+    `Because I don't give a fuck.`,
+    `Because it can make it to the montage.`,
+    `Because if it goes wrong it'll go to a cringe compilation.`
 ]

@@ -107,5 +107,7 @@ module.exports = [
     "What could possibly go wrong?",
     "What's the worse that could happen?",
     "Ah, I see you're an entity of culture as well.",
-    "You should ask that bitch Alexa."
+    "You should ask that bitch Alexa.",
+    "You should ask that bitch Cortana.",
+    "You should ask Siri, that slut."
 ];

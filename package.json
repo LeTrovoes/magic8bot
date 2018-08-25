@@ -2,15 +2,15 @@
   "name": "8ball",
   "version": "1.0.0",
   "description": "",
-  "main": "bot.js",
+  "main": "sharder.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node sharder.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "request": "^2.87.0",
+    "discord.js": "^11.4.2",
+    "request": "^2.88.0",
     "uws": "^8.14.1"
   }
 }

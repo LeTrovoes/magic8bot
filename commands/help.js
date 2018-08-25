@@ -6,7 +6,7 @@ module.exports = {
 function help(message, args, client) {
     const embed = {
         "title": "**Instructions**",
-        "description": "Type **8ball** and ask me a question. Pretty simple, huh?\n\n",
+        "description": "Type **8ball** and ask me a question. Pretty simple, huh?\n\nYou can also do that in DM\n(Thanks zixer321#6853 for this idea!)",
         "url": "",
         "color": 65793,
         "timestamp": new Date(),

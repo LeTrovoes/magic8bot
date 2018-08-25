@@ -17,5 +17,7 @@ function setGame(message, args, client){
         game_obj = { name: game, type: type, url: url };
     }
 
-    client.user.setPresence({game: game_obj});
+    client.shard.broadcastEval(`[this.user.setPresence({game: ${JSON.stringify(game_obj)}})]`).then(results => {
+        console.log("UPDATED GAME: " + type + " | " + game);
+    });
 }

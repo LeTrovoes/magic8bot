@@ -18,33 +18,37 @@ const why       = require("./replies/why.js");
 
 client.login(token);
 
-const INTERVAL = 30 * 60 * 1000;
+const INTERVAL = 10 * 60 * 1000; // update game every 10 minutes
 
 setInterval(function() {
-    let guilds = client.guilds.size;
-    client.user.setPresence({ game: { name: "answers to " + guilds + " servers | 8ball help", type: 1, url: "https://www.twitch.tv/monstercat"}});
+    fs.readFile('./stats.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        let stats = JSON.parse(data);
+        client.user.setPresence({ game: { name: "answers to " + stats.guildCount + " servers | 8ball help | " + client.shard.id, type: 1, url: "https://www.twitch.tv/monstercat"}});
+    });
 }, INTERVAL);
 
 client.on('ready', () => {
-    console.log("Ready!");
+    logger.log("Ready!", client.shard);
     setTimeout(function () {
         client.user.setStatus('online');
-        client.user.setPresence({ game: { name: "answers | 8ball help", type: 1, url: "https://www.twitch.tv/monstercat"}});
+        client.user.setPresence({ game: { name: "answers | 8ball help | " + client.shard.id, type: 1, url: "https://www.twitch.tv/monstercat"}});
     }, 10000);
 });
 
 client.on('message', message => {
     if (message.author.bot) return;
-    if (message.content.startsWith("8ball") || message.content.startsWith("<@357678717301948416>")){
-        handleMessage(message);
-    }
+    handleMessage(message);
 });
 
 function handleMessage(message){
 
     var content;
-    if (message.content.startsWith("<@357678717301948416>")) content = message.content.replace("<@357678717301948416>", "").trim();
-    else if (message.content.startsWith("8ball")) content = message.content.replace("8ball", "").trim();
+    if (message.content.startsWith("8ball")) content = message.content.replace("8ball", "").trim();
+    else if (message.content.startsWith("<@357678717301948416>")) content = message.content.replace("<@357678717301948416>", "").trim();
+    else if (message.content.startsWith("<@!357678717301948416>")) content = message.content.replace("<@!357678717301948416>", "").trim();
+    else if (message.channel.type == "dm") content = message.content;
+    else return;
 
     if (content.length < 50){
         let cmd_arg = content.split(" ");
@@ -108,7 +112,7 @@ function isInWhitelist (userId){
 
 function postWebHook(message, content, is_myself){
     content = content.replace(/\@everyone/g, "everyone").replace(/\@here/g, "here");
-    var hook_username = message.member.nickname == null ? message.author.username : message.member.nickname;
+    var hook_username = (message.member == null || message.member.nickname == null) ? message.author.username : message.member.nickname;
     var options;
     if (is_myself){
         options = {
