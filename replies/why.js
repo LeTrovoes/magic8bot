@@ -41,4 +41,4 @@ module.exports = [
     `Because I don't give a fuck.`,
     `Because it can make it to the montage.`,
     `Because if it goes wrong it'll go to a cringe compilation.`
-]
+];

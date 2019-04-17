@@ -1,15 +1,15 @@
 module.exports = {
     adminOnly: true,
     run: setGame
-}
+};
 
-function setGame(message, args, client){
+function setGame(message, args, client) {
     let type = args[0];
-    let game = args.slice(1).join(" ");
+    let game = args.slice(1).join(' ');
     let url, game_obj;
 
     if (!type || !game) game_obj = null;
-    else{
+    else {
         type = Number(type);
         if (type < 0 || type > 3 || isNaN(type)) type = 0;
         if (type == 1) url = 'https://www.twitch.tv/monstercat';
@@ -17,7 +17,6 @@ function setGame(message, args, client){
         game_obj = { name: game, type: type, url: url };
     }
 
-    client.shard.broadcastEval(`[this.user.setPresence({game: ${JSON.stringify(game_obj)}})]`).then(results => {
-        console.log("UPDATED GAME: " + type + " | " + game);
-    });
+    client.editStatus(game_obj);
+    console.log('UPDATED GAME: ' + type + ' | ' + game);
 }

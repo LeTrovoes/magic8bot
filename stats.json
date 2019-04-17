@@ -1,4 +1,20 @@
 {
-  "guildCount": 0,
-  "shards": 0
+    "guilds": 0,
+    "users": 0,
+    "voice": 0,
+    "exclusiveGuilds": 0,
+    "largeGuilds": 0,
+    "totalRam": 0,
+    "clusters": [
+        {
+            "cluster": 0,
+            "shards": 0,
+            "guilds": 0,
+            "ram": 0,
+            "voice": 0,
+            "uptime": 0,
+            "exclusiveGuilds": 0,
+            "largeGuilds": 0
+        }
+    ]
 }
