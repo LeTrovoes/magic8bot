@@ -28,7 +28,7 @@ function help(message, args, client) {
             {
                 name: 'Invite me to your server',
                 value:
-                    '[Click here](https://discordapp.com/oauth2/authorize?client_id=357678717301948416&scope=bot&permissions=104324161)'
+                    '[Click here](https://discordapp.com/oauth2/authorize?client_id=357678717301948416&scope=bot&permissions=3072)'
             }
         ]
     };
